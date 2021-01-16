@@ -129,12 +129,12 @@ export default function Layout({ children }) {
         />
         <meta
           name="description"
-          content="nextjs-mongodb-app is a continously developed app built with Next.JS and MongoDB. This project goes further and attempts to integrate top features as seen in real-life apps."
+          content="A social reading space at a different pace of conversation, coming in February of 2021"
         />
-        <meta property="og:title" content="Next.js + MongoDB App" />
+        <meta property="og:title" content="Commons" />
         <meta
           property="og:description"
-          content="nextjs-mongodb-app is a continously developed app built with Next.JS and MongoDB. This project goes further and attempts to integrate top features as seen in real-life apps."
+          content="A social reading space at a different pace of conversation, coming in February of 2021"
         />
         <meta
           property="og:image"
@@ -154,13 +154,10 @@ export default function Layout({ children }) {
                 <Link href="/login">
                   <a>Sign in</a>
                 </Link>
-                <Link href="/signup">
-                  <a>Sign up</a>
-                </Link>
               </>
             ) : (
               <>
-                <Link href={`/user/${user.handle}`}>
+                <Link href={`/user/${user._id}`}>
                   <a>Profile</a>
                 </Link>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
