@@ -7,11 +7,7 @@ export default function PostEditor() {
   const [msg, setMsg] = useState(null);
 
   if (!user) {
-    return (
-      <div style={{ color: '#555', textAlign: 'center' }}>
-        Please sign in to post
-      </div>
-    );
+    return <div style={{ color: '#555', textAlign: 'center' }}>Please sign in to post</div>;
   }
 
   async function hanldeSubmit(e) {
@@ -34,18 +30,20 @@ export default function PostEditor() {
 
   return (
     <>
-      <p style={{ color: '#0070f3', textAlign: 'center' }}>
-        {msg}
-      </p>
+      <p style={{ color: '#0070f3', textAlign: 'center' }}>{msg}</p>
       <form onSubmit={hanldeSubmit} style={{ flexDirection: 'row' }} autoComplete="off">
         <label htmlFor="name">
-          <input
-            name="content"
-            type="text"
-            placeholder="Say something, I'm giving up on you..."
-          />
+          <input name="content" type="text" placeholder="Say something, I'm giving up on you..." />
         </label>
-        <button type="submit" style={{ marginLeft: '0.5rem' }}>Post</button>
+        <label htmlFor="soure">
+          <input name="soure" type="text" placeholder="paste url" />
+        </label>
+        <label htmlFor="tags">
+          <input name="tags" type="text" placeholder="add, some, tags," />
+        </label>
+        <button type="submit" style={{ marginLeft: '0.5rem' }}>
+          Post
+        </button>
       </form>
     </>
   );
