@@ -1,13 +1,13 @@
-import React from "react";
-import Head from "next/head";
-import Link from "next/link";
-import { useCurrentUser } from "@/hooks/index";
+import React from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
+import { useCurrentUser } from '@/hooks/index';
 
 export default function Layout({ children }) {
   const [user, { mutate }] = useCurrentUser();
   const handleLogout = async () => {
-    await fetch("/api/auth", {
-      method: "DELETE",
+    await fetch('/api/auth', {
+      method: 'DELETE',
     });
     mutate(null);
   };
@@ -27,9 +27,8 @@ export default function Layout({ children }) {
             margin: 0;
             padding: 0;
             color: #111;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-              "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-              "Helvetica Neue", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+              'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
             background-color: #fff;
           }
           h2 {
@@ -103,7 +102,7 @@ export default function Layout({ children }) {
             float: left;
           }
           nav:after {
-            content: "";
+            content: '';
             clear: both;
             display: table;
           }
@@ -161,7 +160,7 @@ export default function Layout({ children }) {
               </>
             ) : (
               <>
-                <Link href={`/user/${user._id}`}>
+                <Link href={`/user/${user.handle}`}>
                   <a>Profile</a>
                 </Link>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
@@ -177,19 +176,26 @@ export default function Layout({ children }) {
       <main>{children}</main>
       <footer>
         <p>
-          Made with{" "}
+          Made with
+          {' '}
           <span role="img" aria-label="Love">
             ❤️
           </span>
-          ,{" "}
+          ,
+          {' '}
           <span role="img" aria-label="Fire">
             🔥
           </span>
-          , and a keyboard by <a href="https://hoangvvo.com/">Hoang Vo</a>.
+          , and a keyboard by
+          {' '}
+          <a href="https://hoangvvo.com/">Hoang Vo</a>
+          .
         </p>
         <p>
-          Source code is on{" "}
-          <a href="https://github.com/hoangvvo/nextjs-mongodb-app">Github</a>.
+          Source code is on
+          {' '}
+          <a href="https://github.com/hoangvvo/nextjs-mongodb-app">Github</a>
+          .
         </p>
       </footer>
     </>
