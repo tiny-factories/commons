@@ -42,6 +42,7 @@ export default function PostEditor() {
         <label htmlFor="source">
           <input name="source" type="url" placeholder="https://" />
         </label>
+
         <button type="submit" style={{ marginLeft: '0.5rem' }}>
           Post
         </button>
