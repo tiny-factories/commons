@@ -7,20 +7,19 @@ export default function PostEditor() {
   const [msg, setMsg] = useState(null);
 
   if (!user) {
-    return (
-      <div style={{ color: '#555', textAlign: 'center' }}>
-        Please sign in to post
-      </div>
-    );
+    return <div style={{ color: '#555', textAlign: 'center' }}>Please sign in to post</div>;
   }
 
-  async function hanldeSubmit(e) {
+  async function handleSubmit(e) {
+    console.log(e);
     e.preventDefault();
     const body = {
       content: e.currentTarget.content.value,
+      source: e.currentTarget.source.value,
     };
     if (!e.currentTarget.content.value) return;
     e.currentTarget.content.value = '';
+    e.currentTarget.source.value = '';
     const res = await fetch('/api/posts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -28,24 +27,24 @@ export default function PostEditor() {
     });
     if (res.ok) {
       setMsg('Posted!');
+      console.log(body);
       setTimeout(() => setMsg(null), 5000);
     }
   }
 
   return (
     <>
-      <p style={{ color: '#0070f3', textAlign: 'center' }}>
-        {msg}
-      </p>
-      <form onSubmit={hanldeSubmit} style={{ flexDirection: 'row' }} autoComplete="off">
+      <p style={{ color: '#0070f3', textAlign: 'center' }}>{msg}</p>
+      <form onSubmit={handleSubmit} style={{ flexDirection: 'row' }} autoComplete="off">
         <label htmlFor="name">
-          <input
-            name="content"
-            type="text"
-            placeholder="Say something, I'm giving up on you..."
-          />
+          <input name="content" type="text" placeholder="Title" />
         </label>
-        <button type="submit" style={{ marginLeft: '0.5rem' }}>Post</button>
+        <label htmlFor="source">
+          <input name="source" type="url" placeholder="https://" />
+        </label>
+        <button type="submit" style={{ marginLeft: '0.5rem' }}>
+          Post
+        </button>
       </form>
     </>
   );

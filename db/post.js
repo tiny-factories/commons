@@ -17,11 +17,19 @@ export async function getPosts(db, from = new Date(), by, limit) {
     .toArray();
 }
 
-export async function insertPost(db, { content, creatorId }) {
-  return db.collection('posts').insertOne({
-    _id: nanoid(12),
-    content,
-    creatorId,
-    createdAt: new Date(),
-  }).then(({ ops }) => ops[0]);
+export async function insertPost(db, {
+  content, source, tags, creatorId,
+}) {
+  return db
+    .collection('posts')
+    .insertOne({
+      _id: nanoid(12),
+      title,
+      source,
+      content,
+      tags,
+      creatorId,
+      createdAt: new Date(),
+    })
+    .then(({ ops }) => ops[0]);
 }
