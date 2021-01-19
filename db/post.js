@@ -17,13 +17,16 @@ export async function getPosts(db, from = new Date(), by, limit) {
     .toArray();
 }
 
-export async function insertPost(db, { content, source, creatorId }) {
+export async function insertPost(db, {
+  content, source, labels, creatorId,
+}) {
   return db
     .collection('posts')
     .insertOne({
       _id: nanoid(12),
       content,
       source,
+      labels,
       creatorId,
       createdAt: new Date(),
     })

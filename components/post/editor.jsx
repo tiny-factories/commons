@@ -16,10 +16,14 @@ export default function PostEditor() {
     const body = {
       content: e.currentTarget.content.value,
       source: e.currentTarget.source.value,
+      labels: e.currentTarget.labels.value,
     };
     if (!e.currentTarget.content.value) return;
+
     e.currentTarget.content.value = '';
     e.currentTarget.source.value = '';
+    e.currentTarget.labels.value = '';
+
     const res = await fetch('/api/posts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -41,6 +45,9 @@ export default function PostEditor() {
         </label>
         <label htmlFor="source">
           <input name="source" type="url" placeholder="https://" />
+        </label>
+        <label htmlFor="labels">
+          <input name="labels" type="text" placeholder="matcha, tea, japan" />
         </label>
 
         <button type="submit" style={{ marginLeft: '0.5rem' }}>

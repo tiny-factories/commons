@@ -35,6 +35,7 @@ handler.post(async (req, res) => {
   const post = await insertPost(req.db, {
     content: req.body.content,
     source: req.body.source,
+    labels: req.body.labels,
     creatorId: req.user._id,
   });
 
