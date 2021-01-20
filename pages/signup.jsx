@@ -14,6 +14,7 @@ const SignupPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const body = {
+      membername: e.currentTarget.email.membername,
       email: e.currentTarget.email.value,
       password: e.currentTarget.password.value,
     };
@@ -40,7 +41,7 @@ const SignupPage = () => {
         <form onSubmit={handleSubmit}>
           {errorMsg ? <p style={{ color: 'red' }}>{errorMsg}</p> : null}
           <label htmlFor="membername">
-            <input id="membername" name="membername" type="text" placeholder="@membername" />
+            <input id="membername" name="membername" type="text" placeholder="membername" />
           </label>
           <label htmlFor="email">
             <input id="email" name="email" type="email" placeholder="Email address" />
