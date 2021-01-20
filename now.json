@@ -1,15 +1,16 @@
 {
   "name": "commons",
   "version": 2,
+  "alias": ["commons.gndclouds.cc", "commons.vercel.app"]
   "build": {
     "env": {
-      "MONGODB_URI": "mongodb+srv://commonsadmin:uqHR9IQopNB4TS01@commonsdatabase.hbkpl.mongodb.net/commons?retryWrites=true&w=majority",
+      "MONGODB_URI": "mongodb+srv://commonsadmin:SfDp9XCJQ99sczit@commonsdatabase.hbkpl.mongodb.net/commons?retryWrites=true&w=majority",
       "CLOUDINARY_URL": "cloudinary://741947492169653:vkyuRmZ3EbSULnkfXJdtSqwhURw@dbplcha6k",
       "DB_NAME": "commons",
-      "SENDGRID_API_KEY": "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",
+      "SENDGRID_API_KEY": "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",
       "EMAIL_FROM": "commons@gndclouds.cc",
-      "WEB_URI": "http://localhost:3000",
-      "SESSION_SECRET": "keyboard cat",
+      "WEB_URI": "https://commons.vercel.app/",
+      "SESSION_SECRET": "A7dh8dSD803H3ehdas9B2hJ8VT5",
       "USING_SECRETS": "Consider using Zeit Now Secrets instead."
     }
   }
