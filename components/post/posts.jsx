@@ -47,6 +47,10 @@ function Post({ post }) {
             ↗
           </a>
         </p>
+        <p>
+          labels:
+          {post.labels}
+        </p>
         <small>{new Date(post.createdAt).toLocaleString()}</small>
       </div>
     </>
