@@ -1,5 +1,8 @@
 import { MongoClient } from 'mongodb';
 
+let cachedClient = null;
+let cachedDb = null;
+
 /**
  * Global is used here to maintain a cached connection across hot reloads
  * in development. This prevents connections growing exponentiatlly
@@ -11,9 +14,7 @@ global.mongo = global.mongo || {};
 let indexesCreated = false;
 export async function createIndexes(db) {
   await Promise.all([
-    db
-      .collection('tokens')
-      .createIndex({ expireAt: -1 }, { expireAfterSeconds: 0 }),
+    db.collection('tokens').createIndex({ expireAt: -1 }, { expireAfterSeconds: 0 }),
     db.collection('posts').createIndex({ createdAt: -1 }),
     db.collection('users').createIndex({ email: 1 }, { unique: true }),
   ]);
@@ -32,4 +33,22 @@ export default async function database(req, res, next) {
   req.db = global.mongo.client.db(process.env.DB_NAME);
   if (!indexesCreated) await createIndexes(req.db);
   return next();
+}
+
+export async function connectToDatabase() {
+  if (cachedClient && cachedDb) {
+    return { client: cachedClient, db: cachedDb };
+  }
+
+  const client = await MongoClient.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  const db = await client.db(dbName);
+
+  cachedClient = client;
+  cachedDb = db;
+
+  return { client, db };
 }
