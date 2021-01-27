@@ -1,6 +1,7 @@
 import nc from 'next-connect';
 import { all } from '@/middlewares/index';
 import { getPosts, insertPost } from '@/db/index';
+import ogs from 'open-graph-scraper-lite';
 
 const handler = nc();
 
@@ -13,7 +14,7 @@ handler.get(async (req, res) => {
     req.db,
     req.query.from ? new Date(req.query.from) : undefined,
     req.query.by,
-    req.query.limit ? parseInt(req.query.limit, 10) : undefined,
+    req.query.limit ? parseInt(req.query.limit, 30) : undefined,
   );
 
   if (req.query.from && posts.length > 0) {
@@ -30,7 +31,11 @@ handler.post(async (req, res) => {
     return res.status(401).send('unauthenticated');
   }
 
-  if (!req.body.content) return res.status(400).send('You must write something');
+  if (!req.body.source) return res.status(400).send('You must write something');
+
+  // TESTING
+
+  // TESTING END
 
   const post = await insertPost(req.db, {
     content: req.body.content,
