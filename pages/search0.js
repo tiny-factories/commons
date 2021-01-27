@@ -31,7 +31,7 @@ function SearchPage({ data }) {
 export async function getServerSideProps(req) {
   // Fetch data from external API
   const handleSubmit = '';
-  const makeURL = '?term=earth';
+  const makeURL = `?term=${req.body}`;
 
   const res = await fetch(`http://localhost:3000/api/search${makeURL}`);
   const data = await res.json();

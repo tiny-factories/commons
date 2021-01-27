@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useCurrentUser } from '@/hooks/index';
+import Navagation from '@/components/navagation';
 
 export default function Layout({ children }) {
   const [user, { mutate }] = useCurrentUser();
@@ -82,30 +83,7 @@ export default function Layout({ children }) {
           header {
             border-bottom: 1px solid #d8d8d8;
           }
-          nav {
-            max-width: 1040px;
-            margin: auto;
-            padding: 1rem 2rem;
-          }
-          nav div {
-            float: right;
-          }
-          nav div a {
-            font-size: 0.9rem;
-            margin-left: 1rem;
-          }
-          nav h1 {
-            font-size: 1rem;
-            color: #444;
-            margin: 0;
-            font-weight: 700;
-            float: left;
-          }
-          nav:after {
-            content: '';
-            clear: both;
-            display: table;
-          }
+
           main {
             padding: 1rem;
             max-width: 1040px;
@@ -142,32 +120,7 @@ export default function Layout({ children }) {
         />
       </Head>
       <header>
-        <nav>
-          <Link href="/">
-            <a>
-              <h1>Commons</h1>
-            </a>
-          </Link>
-          <div>
-            {!user ? (
-              <>
-                <Link href="/login">
-                  <a>Sign in</a>
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link href={`/user/${user._id}`}>
-                  <a>Profile</a>
-                </Link>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a tabIndex={0} role="button" onClick={handleLogout}>
-                  Logout
-                </a>
-              </>
-            )}
-          </div>
-        </nav>
+        <Navagation />
       </header>
 
       <main>{children}</main>

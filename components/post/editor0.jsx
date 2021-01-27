@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useCurrentUser } from '@/hooks/index';
-import scrapeIt from 'scrape-it';
 
 export default function PostEditor() {
   const [user] = useCurrentUser();
@@ -12,15 +11,16 @@ export default function PostEditor() {
   }
 
   async function handleSubmit(e) {
-    getDataFromURL(e);
-    // console.log(e);
+    console.log(e);
     e.preventDefault();
     const body = {
+      content: e.currentTarget.content.value,
       source: e.currentTarget.source.value,
       labels: e.currentTarget.labels.value,
     };
     if (!e.currentTarget.content.value) return;
 
+    e.currentTarget.content.value = '';
     e.currentTarget.source.value = '';
     e.currentTarget.labels.value = '';
 
@@ -34,23 +34,6 @@ export default function PostEditor() {
       console.log(body);
       setTimeout(() => setMsg(null), 5000);
     }
-  }
-
-  async function getDataFromURL(e) {
-    console.log('Scraping Data ...');
-    console.log(e.currentTarget.source.value);
-
-    scrapeIt(e.currentTarget.source.value, {
-      title: '.header h1',
-      desc: '.header h2',
-      avatar: {
-        selector: '.header img',
-        attr: 'src',
-      },
-    }).then(({ data, response }) => {
-      console.log(`Status Code: ${response.statusCode}`);
-      console.log(data);
-    });
   }
 
   return (
