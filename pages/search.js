@@ -16,13 +16,13 @@ function SearchPage({ data }) {
         <input type="text" autoComplete="off" placeholder="search movies..." aria-label="Search" />
       </form>
       <button type="submit">search</button>
-
       <hr />
-      {data.map((i) => (
-        <li>
-          <Link href={`${i.source}`}>{i.content}</Link>
-        </li>
-      ))}
+      // Move this to antoher function // // https://www.youtube.com/watch?v=Mfp94RjugWQ
+      data.map((i) => (
+      <li>
+        <Link href={`${i.source}`}>{i.content}</Link>
+      </li>
+      ))
     </>
   );
 }

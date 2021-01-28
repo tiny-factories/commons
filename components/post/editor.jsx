@@ -11,16 +11,14 @@ export default function PostEditor() {
   }
 
   async function handleSubmit(e) {
-    console.log(e);
+    // console.log(e);
     e.preventDefault();
     const body = {
-      content: e.currentTarget.content.value,
       source: e.currentTarget.source.value,
       labels: e.currentTarget.labels.value,
     };
     if (!e.currentTarget.source.value) return;
 
-    e.currentTarget.content.value = '';
     e.currentTarget.source.value = '';
     e.currentTarget.labels.value = '';
 
@@ -31,7 +29,7 @@ export default function PostEditor() {
     });
     if (res.ok) {
       setMsg('Posted!');
-      console.log(body);
+      // console.log(body);
       setTimeout(() => setMsg(null), 5000);
     }
   }
@@ -40,18 +38,14 @@ export default function PostEditor() {
     <>
       <p style={{ color: '#0070f3', textAlign: 'center' }}>{msg}</p>
       <form onSubmit={handleSubmit} style={{ flexDirection: 'row' }} autoComplete="off">
-        <label htmlFor="name">
-          <input name="content" type="text" placeholder="Title" />
-        </label>
         <label htmlFor="source">
           <input name="source" type="url" placeholder="https://" />
         </label>
         <label htmlFor="labels">
           <input name="labels" type="text" placeholder="matcha, tea, japan" />
         </label>
-
         <button type="submit" style={{ marginLeft: '0.5rem' }}>
-          Post
+          Save
         </button>
       </form>
     </>

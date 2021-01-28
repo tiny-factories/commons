@@ -31,19 +31,35 @@ handler.post(async (req, res) => {
     return res.status(401).send('unauthenticated');
   }
 
-  if (!req.body.source) return res.status(400).send('You must write something');
+  if (!req.body.source) return res.status(400).send('Please enter the full path of the url');
+  const options = { url: req.body.source };
+  ogs(options).then((data) => {
+    // const { error, result, response } = data;
+    const { result } = data;
 
-  // TESTING
+    // console.log('error:', error); // This is returns true or false. True if there was a error. The error it self is inside the results object.
+    // console.log('result:', result); // This contains all of the Open Graph results
+    // console.log('response:', response); // This contains the HTML of page
 
-  // TESTING END
-
-  const post = await insertPost(req.db, {
-    content: req.body.content,
+    // console.log(data.result.ogTitle);
+    // const tester = data.result.ogTitle;
+    // console.log(tester);
+    const newData = {
+      content: data.result.ogTitle,
+      source: req.body.source,
+      labels: req.body.labels,
+      creatorId: req.user._id,
+    };
+    // console.log('newData.source');
+    //
+    // console.log(newData.source);
+  });
+  const post = await insertPost(newData, {
+    // content: tester,
     source: req.body.source,
     labels: req.body.labels,
     creatorId: req.user._id,
   });
-
   return res.json({ post });
 });
 
