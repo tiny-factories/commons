@@ -1,40 +1,38 @@
 import React, { useState } from "react";
 import { useCurrentUser } from "@/hooks/index";
-import Tags from "@/components/tag/tags";
-import Playlists from "@/components/playlist/playlists";
 
-export default function PostEditor() {
+export default function PlaylistEditor() {
   const [user] = useCurrentUser();
 
   const [msg, setMsg] = useState(null);
 
-  if (!user) {
+  {
+    /* if (!user) {
     return (
       <div style={{ color: "#555", textAlign: "center" }}>
-        Please sign in to post
+        Please sign in to create playlist
       </div>
     );
+  } */
   }
 
   async function handleSubmit(e) {
     // console.log(e);
     e.preventDefault();
     const body = {
-      source: e.currentTarget.source.value,
-      labels: e.currentTarget.labels.value,
+      name: e.currentTarget.name.value,
     };
-    if (!e.currentTarget.source.value) return;
+    if (!e.currentTarget.name.value) return;
 
-    e.currentTarget.source.value = "";
-    e.currentTarget.labels.value = "";
+    e.currentTarget.name.value = "";
 
-    const res = await fetch("/api/posts", {
+    const res = await fetch("/api/playlists", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
     if (res.ok) {
-      setMsg("Posted!");
+      setMsg("Playlist Created");
       // console.log(body);
       setTimeout(() => setMsg(null), 5000);
     }
@@ -49,17 +47,11 @@ export default function PostEditor() {
         autoComplete="off"
       >
         <label htmlFor="source">
-          <input name="source" type="url" placeholder="https://" />
+          <input name="name" type="text" placeholder="playlist name" />
         </label>
-        {/* <label htmlFor="labels">
-          <input name="labels" type="text" placeholder="matcha, tea, japan" />
-        </label> */}
-        Tags:
-        <Tags />
-        Playlist:
-        <Playlists />
+
         <button type="submit" style={{ marginLeft: "0.5rem" }}>
-          Save
+          Create Playlist
         </button>
       </form>
     </>

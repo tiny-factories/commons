@@ -1,14 +1,15 @@
-import React from 'react';
-import Head from 'next/head';
-import Link from 'next/link';
-import { useCurrentUser } from '@/hooks/index';
-import Navagation from '@/components/navagation';
+import React from "react";
+import Head from "next/head";
+import Link from "next/link";
+import { useCurrentUser } from "@/hooks/index";
+import Navagation from "@/components/navagation";
+import Footer from "@/components/footer";
 
 export default function Layout({ children }) {
   const [user, { mutate }] = useCurrentUser();
   const handleLogout = async () => {
-    await fetch('/api/auth', {
-      method: 'DELETE',
+    await fetch("/api/auth", {
+      method: "DELETE",
     });
     mutate(null);
   };
@@ -28,13 +29,12 @@ export default function Layout({ children }) {
             margin: 0;
             padding: 0;
             color: #111;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-              'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+              "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+              "Helvetica Neue", sans-serif;
             background-color: #fff;
           }
           h2 {
-            color: #333;
-            text-align: center;
           }
           label {
             display: flex;
@@ -52,36 +52,22 @@ export default function Layout({ children }) {
           input,
           textarea {
             font-family: monospace;
-            flex: 1 1 0%;
-            margin-left: 0.5rem;
-            box-shadow: none;
-            width: 100%;
-            color: #000;
             background-color: transparent;
-            border: 1px solid #d8d8d8;
-            border-radius: 5px;
             outline: 0px;
             padding: 10px 25px;
+            border: none;
           }
           button {
-            display: block;
+            color: #000000;
+            background: #ffffff;
+            border: 1px solid #000;
+            box-sizing: border-box;
             margin-bottom: 0.5rem;
-            color: #fff;
-            border-radius: 5px;
-            border: none;
-            background-color: #000;
             cursor: pointer;
-            transition: all 0.2s ease 0s;
             padding: 10px 25px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
           }
           button:hover,
           button:active {
-            transform: translate3d(0px, -1px, 0px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-          }
-          header {
-            border-bottom: 1px solid #d8d8d8;
           }
 
           main {
@@ -118,36 +104,18 @@ export default function Layout({ children }) {
           property="og:image"
           content="https://repository-images.githubusercontent.com/201392697/5d392300-eef3-11e9-8e20-53310193fbfd"
         />
+        <script
+          async
+          defer
+          data-website-id="e51c760e-6e4d-4d60-a3f5-2d79fcf21d81"
+          src="https://umami.tinyfactories.space/umami.js"
+        ></script>
       </Head>
-      <header>
-        <Navagation />
-      </header>
+      <header></header>
+      <Navagation />
 
       <main>{children}</main>
-      <footer>
-        <p>
-          Made with
-          {' '}
-          <span role="img" aria-label="Love">
-            ❤️
-          </span>
-          ,
-          {' '}
-          <span role="img" aria-label="Fire">
-            🔥
-          </span>
-          , and a keyboard by
-          {' '}
-          <a href="https://hoangvvo.com/">Hoang Vo</a>
-          .
-        </p>
-        <p>
-          Source code is on
-          {' '}
-          <a href="https://github.com/hoangvvo/nextjs-mongodb-app">Github</a>
-          .
-        </p>
-      </footer>
+      <Footer />
     </>
   );
 }

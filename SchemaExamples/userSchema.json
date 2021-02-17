@@ -1,0 +1,22 @@
+{
+  "_id": {
+    "$oid": "602cef52e5342f4aa076f613"
+  },
+  "name": "Test",
+  "createdAt": {
+    "$date": "2021-01-16T15:50:44.234Z"
+  },
+  "updated": {
+    "$date": "2021-01-16T15:50:44.234Z"
+  },
+  "records": {
+    "ArticleID": "as",
+    "sss": "2021-01-16T15:50:44.234Z"
+  },
+  "Members": {
+    "Teams": "2021-01-16T15:50:44.234Z",
+    "ArticleID": "2021-01-16T15:50:44.234Z"
+  },
+  "Viaulity": "Public",
+  "creatorId": "qjVN4U8ugXtm"
+}

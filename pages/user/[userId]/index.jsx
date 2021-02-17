@@ -1,19 +1,17 @@
-import React from 'react';
-import Head from 'next/head';
-import Link from 'next/link';
-import Error from 'next/error';
-import { all } from '@/middlewares/index';
-import { useCurrentUser } from '@/hooks/index';
-import Posts from '@/components/post/posts';
-import { extractUser } from '@/lib/api-helpers';
-import { findUserById } from '@/db/index';
-import { defaultProfilePicture } from '@/lib/default';
+import React from "react";
+import Head from "next/head";
+import Link from "next/link";
+import Error from "next/error";
+import { all } from "@/middlewares/index";
+import { useCurrentUser } from "@/hooks/index";
+import Posts from "@/components/post/posts";
+import { extractUser } from "@/lib/api-helpers";
+import { findUserById } from "@/db/index";
+import { defaultProfilePicture } from "@/lib/default";
 
 export default function UserPage({ user }) {
   if (!user) return <Error statusCode={404} />;
-  const {
-    name, membername, email, bio, profilePicture, _id,
-  } = user || {};
+  const { name, membername, email, bio, profilePicture, _id } = user || {};
   const [currentUser] = useCurrentUser();
   const isCurrentUser = currentUser?._id === user._id;
   return (
@@ -44,14 +42,13 @@ export default function UserPage({ user }) {
             margin: 0.25rem 0 0.75rem;
           }
           a {
-            margin-left: 0.25rem;
           }
         `}
       </style>
       <Head>
         <title>{membername}</title>
       </Head>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <img
           src={profilePicture || defaultProfilePicture(_id)}
           width="256"
@@ -83,7 +80,9 @@ export default function UserPage({ user }) {
 
 export async function getServerSideProps(context) {
   await all.run(context.req, context.res);
-  const user = extractUser(await findUserById(context.req.db, context.params.userId));
+  const user = extractUser(
+    await findUserById(context.req.db, context.params.userId)
+  );
   if (!user) context.res.statusCode = 404;
   return { props: { user } };
 }
