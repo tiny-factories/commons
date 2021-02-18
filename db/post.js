@@ -17,17 +17,23 @@ export async function getPosts(db, from = new Date(), by, limit) {
     .toArray();
 }
 
-export async function insertPost(db, { content, source, labels, creatorId }) {
-  console.log("Here");
+export async function insertPost(
+  db,
+  { content, source, inPlaylists, tags, creatorId }
+) {
+  console.log("Running insertPost");
   return db
     .collection("posts")
     .insertOne({
       _id: nanoid(12),
       content,
       source,
-      labels,
+      tags,
       creatorId,
+      shadowedBy: [],
+      inPlaylists,
       createdAt: new Date(),
+      updatedAt: new Date(),
     })
     .then(({ ops }) => ops[0]);
 }

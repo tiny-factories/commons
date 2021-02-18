@@ -31,10 +31,13 @@ handler.post(async (req, res) => {
   }
 
   if (!req.body.source) return res.status(400).send("You must write something");
-
+  console.log(req.body.tags);
   const post = await insertPost(req.db, {
-    content: req.body.content,
+    source: req.body.source,
     creatorId: req.user._id,
+    shadowedBy: [req.user._id],
+    inPlaylists: [req.body.inPlaylists],
+    tags: [req.body.tags],
   });
 
   return res.json({ post });

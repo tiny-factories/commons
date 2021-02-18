@@ -21,7 +21,6 @@ export default function Navagation({ post }) {
             margin-top: 30px;
             background: #ffffff;
             border: 1px solid #000000;
-            box-sizing: border-box;
           }
           nav .logo {
             float: left;
@@ -37,7 +36,9 @@ export default function Navagation({ post }) {
           .search {
             text-align: left;
             display: inline-block;
-            border: 1px solid #000000;
+             {
+              /* border: 1px solid #000000; */
+            }
           }
           .search input {
             width: 100%;

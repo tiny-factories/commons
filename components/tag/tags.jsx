@@ -11,7 +11,7 @@ function Tag({ tag }) {
     <>
       <style jsx>
         {`
-          div {
+          option {
             padding: 0.5rem;
             margin-bottom: 0.5rem;
             background: #ffffff;
@@ -81,9 +81,17 @@ export default function tags({ creatorId }) {
 
   return (
     <div>
-      {tags.map((tag) => (
-        <Tag key={tag._id} tag={tag} />
-      ))}
+      <label htmlFor="tags">
+        <p>Tags:</p>
+        <select id="tags">
+          {tags.map((tag) => (
+            <option name="tags" value={tag._id}>
+              {tag.name}
+            </option>
+          ))}
+        </select>
+      </label>
+
       {!isReachingEnd && (
         <button
           type="button"

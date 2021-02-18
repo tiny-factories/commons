@@ -47,10 +47,10 @@ export default function Footer({ post }) {
         <Link href="https://github.com/tiny-factories/code-of-conduct">
           <a className="nav-item">code of conduct /</a>
         </Link>
-        <Link href="https://github.com/tiny-factories/tiny-garden">
+        <Link href="https://github.com/tiny-factories/commons">
           <a className="nav-item">source code /</a>
         </Link>
-        <Link href="https://www.websitecarbon.com/website/tiny-garden/">
+        <Link href="">
           <a className="nav-item">carbon</a>
         </Link>
       </footer>

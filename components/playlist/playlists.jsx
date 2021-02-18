@@ -87,9 +87,18 @@ export default function Playlists({ creatorId }) {
 
   return (
     <div>
-      {playlists.map((playlist) => (
-        <Playlist key={playlist._id} playlist={playlist} />
-      ))}
+      <label htmlFor="inPlaylists">
+        <p>Playlist</p>
+        {/* FIX: @will: Look into replacing select with datalist element */}
+        <select id="inPlaylists">
+          {playlists.map((playlist) => (
+            <option name="inPlaylists" value={playlist._id}>
+              {playlist.name}
+            </option>
+          ))}
+        </select>
+      </label>
+
       {!isReachingEnd && (
         <button
           type="button"

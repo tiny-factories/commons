@@ -17,16 +17,18 @@ export default function PostEditor() {
   }
 
   async function handleSubmit(e) {
-    // console.log(e);
+    console.log(e);
     e.preventDefault();
     const body = {
       source: e.currentTarget.source.value,
-      labels: e.currentTarget.labels.value,
+      inPlaylists: e.currentTarget.inPlaylists.value,
+      tags: e.currentTarget.tags.value,
     };
     if (!e.currentTarget.source.value) return;
 
     e.currentTarget.source.value = "";
-    e.currentTarget.labels.value = "";
+    e.currentTarget.inPlaylists.value = "";
+    e.currentTarget.tags.value = "";
 
     const res = await fetch("/api/posts", {
       method: "POST",
@@ -35,7 +37,9 @@ export default function PostEditor() {
     });
     if (res.ok) {
       setMsg("Posted!");
-      // console.log(body);
+      {
+        /* console.log(body); */
+      }
       setTimeout(() => setMsg(null), 5000);
     }
   }
@@ -67,6 +71,7 @@ export default function PostEditor() {
             <p>link</p>
             <input name="source" type="url" placeholder="https://" />
           </label>
+
           <Tags creatorId={user._id} />
           <Playlists creatorId={user._id} />
 
