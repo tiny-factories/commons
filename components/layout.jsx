@@ -26,8 +26,10 @@ export default function Layout({ children }) {
             color: #0366d6;
           }
           body {
-            margin: 0;
+            margin: auto;
             padding: 0;
+            max-width: 850px;
+
             color: #111;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
               "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
