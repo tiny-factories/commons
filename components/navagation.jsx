@@ -75,7 +75,7 @@ export default function Navagation({ post }) {
                   <button>Sign in</button>
                 </a>
               </Link>
-              <Link href="/login">
+              <Link href="/signup">
                 <a>
                   <button>Sign up</button>
                 </a>
@@ -98,12 +98,12 @@ export default function Navagation({ post }) {
               />
             </div>
             <div className="links">
-              <Link href="/login">
+              <Link href="/create">
                 <a>
                   <button>+</button>
                 </a>
               </Link>
-              <Link href="/login">
+              <Link href="/logout">
                 <a>
                   <button>Log Out</button>
                 </a>
