@@ -62,15 +62,24 @@ export default function PostEditor() {
       </style>
       <p style={{ color: "#0070f3", textAlign: "center" }}>{msg}</p>
       <div>
-        <form onSubmit={handleSubmit} autoComplete="off">
+        <form
+          onSubmit={handleSubmit}
+          style={{ flexDirection: "row" }}
+          autoComplete="off"
+        >
           <label htmlFor="source">
-            <p>link</p>
             <input name="source" type="url" placeholder="https://" />
           </label>
-          <Tags creatorId={user._id} />
-          <Playlists creatorId={user._id} />
-
-          <button type="submit">Save</button>
+          <label htmlFor="labels">
+            <input name="labels" type="text" placeholder="matcha, tea, japan" />
+          </label>
+          Tags:
+          <Tags />
+          Playlist:
+          <Playlists />
+          <button type="submit" style={{ marginLeft: "0.5rem" }}>
+            Save
+          </button>
         </form>
       </div>
     </>

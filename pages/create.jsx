@@ -1,5 +1,6 @@
 import React from "react";
 import { useCurrentUser } from "@/hooks/index";
+import PostEditor from "@/components/post/editor";
 
 import TagEditor from "@/components/tag/tageditor";
 import PlaylistEditor from "@/components/playlist/playlisteditor";
@@ -25,6 +26,9 @@ const CreatePage = () => {
         `}
       </style>
       <div style={{ marginBottom: "2rem" }}>
+        <>
+          <PostEditor />
+        </>
         <>
           <h2 style={{ paddingTop: "100px" }}>
             Test Page for Creating and Displaying Lable and playlists

@@ -54,54 +54,14 @@ export default function Navagation({ post }) {
         `}
       </style>
       <nav>
-        <>
-          <div className="logo">
-            <Link href="/">
-              <a>L</a>
-            </Link>
-          </div>
-          <div className="search">
-            <input
-              type="text"
-              autoComplete="off"
-              placeholder="search movies..."
-              aria-label="Search"
-            />
-          </div>
-          <div className="links">
-            <Link href="/login">
-              <a>
-                <button>Sign in</button>
-              </a>
-            </Link>
-            <Link href="/login">
-              <a>
-                <button>Sign up</button>
-              </a>
-            </Link>
-          </div>
-        </>
-
-        {/* {!user ? (
+        {!user ? (
           <>
-            <Link href="/">
-              <a>Commons</a>
-            </Link>
-            <div>
-              <Link href="/login">
-                <a>Sign in</a>
+            <div className="logo">
+              <Link href="/">
+                <a>L</a>
               </Link>
             </div>
-          </>
-        ) : (
-          <>
-            <Link href="/">
-              <a>
-                <img src="" />
-                <p>images</p>
-              </a>
-            </Link>
-            <div>
+            <div className="search">
               <input
                 type="text"
                 autoComplete="off"
@@ -109,8 +69,48 @@ export default function Navagation({ post }) {
                 aria-label="Search"
               />
             </div>
+            <div className="links">
+              <Link href="/login">
+                <a>
+                  <button>Sign in</button>
+                </a>
+              </Link>
+              <Link href="/login">
+                <a>
+                  <button>Sign up</button>
+                </a>
+              </Link>
+            </div>
           </>
-        )} */}
+        ) : (
+          <>
+            <div className="logo">
+              <Link href="/">
+                <a>L</a>
+              </Link>
+            </div>
+            <div className="search">
+              <input
+                type="text"
+                autoComplete="off"
+                placeholder="search movies..."
+                aria-label="Search"
+              />
+            </div>
+            <div className="links">
+              <Link href="/login">
+                <a>
+                  <button>+</button>
+                </a>
+              </Link>
+              <Link href="/login">
+                <a>
+                  <button>Log Out</button>
+                </a>
+              </Link>
+            </div>
+          </>
+        )}
       </nav>
     </>
   );
